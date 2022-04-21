@@ -39,7 +39,7 @@ encoded_word = mod(encoded_word,2);
  
 paritiesForDecoder
 
-encoded_word(8) = 1 - encoded_word(8);
+%encoded_word(8) = 1 - encoded_word(8);
 
 bpsk = ones(size(encoded_word));
 for i = 1:length(encoded_word)
@@ -52,7 +52,7 @@ parities_rows = Rows_Parity_bits;
 position_rows = position_Rows;
 position_columns = position_Columns;
 parities_columns = Columns_Parity_bits;
-received_word = bpsk;% + normrnd(0,0.2,1,length(bpsk));
+received_word = bpsk + normrnd(0,0.7,1,length(bpsk));
 initial_message = decoder(received_word, parities_rows, parities_columns, position_rows, position_columns, 0.2);
 test = initial_word == initial_message(1:4096)';
 disp(sum(test))
